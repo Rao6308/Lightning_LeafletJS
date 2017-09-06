@@ -1,0 +1,7 @@
+public class Leaftletdatafetch {
+	@AuraEnabled
+    public static List<contact> serverEcho(){
+        
+        return [select id,name,Title,Email,Department,longitude__latitude__s,longitude__longitude__s from contact limit 100];
+    }
+}

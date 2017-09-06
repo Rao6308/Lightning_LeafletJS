@@ -1,0 +1,11 @@
+<aura:component controller="Leaftletdatafetch" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global" >
+    <ltng:require styles="/resource/leaflet/leaflet.css" />    
+    <ltng:require scripts="/resource/leaflet/leaflet.js"
+             afterScriptsLoaded="{!c.jsLoaded}" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/> 
+    <aura:attribute name="contacts" type="List"/>
+    <aura:attribute name="Latitude" type="String"/>
+    <aura:attribute name="Longitude" type="String"/>
+    <div class="map" id="map"></div>
+
+</aura:component>
