@@ -15,7 +15,6 @@
                     L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',
                                 {
                                 }).addTo(map);
-                    
                     for(var i=0;i<conts.length;i++){
                         if(conts[i].Longitude__Latitude__s != null && conts[i].Longitude__Longitude__s!= null){
                             var lon = conts[i].Longitude__Latitude__s;
@@ -23,24 +22,12 @@
                             var popupText = '<article class="slds-card">'+
                                 '<div class="slds-card__header slds-grid">'+
                                 '<header class="slds-media slds-media_center slds-has-flexi-truncate">'+
-                                '<div class="slds-media__figure">'+
-                                '<span class="slds-icon_container slds-icon-standard-contact" title="description of icon when needed">'+
-                                '<svg class="slds-icon slds-icon_small" aria-hidden="true">'+
-                                '<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/icons/standard-sprite/svg/symbols.svg#contact"></use>'+
-                                '</svg>'+
-                                '</span>'+
-                                '</div>'+
                                 '<div class="slds-media__body">'+
                                 '<h2>'+
-                                '<a href="javascript:void(0);" class="slds-card__header-link slds-truncate" title="[object Object]">'+
-                                '<span class="slds-text-heading_small">Card Header</span>'+
-                                '</a>'+
+                                '<span class="slds-text-heading_small">'+conts[i].Name+'<span>'+
                                 '</h2>'+
                                 '</div>'+
                                 '</header>'+
-                                '<div class="slds-no-flex">'+
-                                '<button class="slds-button slds-button_neutral">New</button>'+
-                                '</div>'+
                                 '</div>'+
                                 '<div class="slds-card__body">'+
                                 '<table class="slds-table slds-table_bordered slds-no-row-hover slds-table_cell-buffer">'+
@@ -77,12 +64,10 @@
                                 '</tr>'+
                                 '</tbody>'+
                                 '</table>'+
-                                '<footer class="slds-card__footer"><a href="javascript:void(0);">View All <span'+ 'class="slds-assistive-text">entity type</span></a></footer>'+
                                 '</article>';
                             var markerLocation = new L.LatLng(lat, lon);
                             var marker = new L.Marker(markerLocation);
                             map.addLayer(marker);
-                            
                             // specify popup options 
                             var customOptions =
                                 {
@@ -111,7 +96,8 @@
                 }
         });
         $A.enqueueAction(action);
-        
-        
-    }
+    },
+    
+    
+    
 })
