@@ -1,0 +1,18 @@
+public class Leaftletdatafetch {
+	@AuraEnabled
+    public static List<contact> fetch_cons(){
+        return [select id,name,Title,Email,Department,Contact_Geolocation__latitude__s,Contact_Geolocation__longitude__s from contact];
+       return null;
+    }
+    @AuraEnabled
+    public static contact create_cons(Decimal lat_val, Decimal long_val){
+        contact con = new contact();
+        for(integer i=0;i<=1000;i++){
+        con.LastName = 'Mapval'+i;
+        }
+        con.Contact_Geolocation__Longitude__s = long_val;
+        con.Contact_Geolocation__latitude__s = lat_val;
+        insert con;
+     return con;
+    }
+}
