@@ -99,7 +99,7 @@
         $A.enqueueAction(action);
     },
     createcontacts : function(component, event, helper,map,lat_lng) {
-        L.circle(lat_lng, {radius: 50}).addTo(map);
+        //L.circle(lat_lng, {radius: 50}).addTo(map);
         
         var r = confirm("Do you wish to create a contact here?");
         if (r == true) { 
