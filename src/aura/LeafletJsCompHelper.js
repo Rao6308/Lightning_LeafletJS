@@ -13,7 +13,6 @@
                     
                     for(var i=0;i<conts.length;i++){
                         if(conts[i].Contact_Geolocation__Latitude__s != null && conts[i].Contact_Geolocation__Longitude__s!= null){
-                            console.log(conts[i]);
                             var lat = conts[i].Contact_Geolocation__Latitude__s;
                             var lon = conts[i].Contact_Geolocation__Longitude__s;
                             var popupText = '<article class="slds-card">'+
@@ -70,9 +69,14 @@
                                 {
                                     'maxWidth': '500',
                                     'className' : 'custom',
-                                }
-                            
+                                }                           
                             marker.bindPopup(popupText,customOptions);
+                            marker.on('mouseover', function (e) {
+                                this.openPopup();
+                            });
+                            marker.on('mouseout', function (e) {
+                                this.closePopup();
+                            });
                         }
                     }
                 });
@@ -95,9 +99,11 @@
         $A.enqueueAction(action);
     },
     createcontacts : function(component, event, helper,map,lat_lng) {
+        L.circle(lat_lng, {radius: 50}).addTo(map);
+        
         var r = confirm("Do you wish to create a contact here?");
-        if (r == true) {
-            var action2 = component.get("c.create_cons");
+        if (r == true) { 
+            /*var action2 = component.get("c.create_cons");
             action2.setParams({
                 lat_val: lat_lng.lat,
                 long_val: lat_lng.lng
@@ -112,7 +118,16 @@
                     
                 }
             });
-            $A.enqueueAction(action2);
+            $A.enqueueAction(action2);*/
+            var createContactEvent = $A.get("e.force:createRecord");
+            createContactEvent.setParams({
+                "entityApiName": "Contact",
+                "defaultFieldValues": {
+                    'Contact_Geolocation__Latitude__s' : lat_lng.lat,
+                    'Contact_Geolocation__Longitude__s' : lat_lng.lng
+                }
+            });
+            createContactEvent.fire();
         }
         else {
         }
